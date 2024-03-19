@@ -1,0 +1,16 @@
+syntax = "proto3";
+package virk_data;
+
+service VirkData {
+    rpc addOrUpdateEntry(EntryUpdateRequest) returns (EntryUpdateResponse);
+}
+
+message EntryUpdateRequest {
+    uint32 id = 1;
+    string col1 = 2;
+    string col2 = 3;
+}
+
+message EntryUpdateResponse {
+    uint32 id = 1;
+}

@@ -1,0 +1,23 @@
+syntax = "proto3";
+package virk_data;
+
+service VirkData {
+    rpc addOrUpdateEntry(EntryUpdateRequest) returns (EntryUpdateResponse);
+    rpc getAllIds(GetAllIdsRequest) returns (GetAllIdsResponse);
+}
+
+message EntryUpdateRequest {
+    uint32 id = 1;
+    string col1 = 2;
+    string col2 = 3;
+}
+
+message EntryUpdateResponse {
+    int64 id = 1;
+}
+
+message GetAllIdsRequest {}
+
+message GetAllIdsResponse {
+    repeated uint32 ids = 1;
+}

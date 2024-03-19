@@ -1,0 +1,28 @@
+services:
+    mongo:
+      image: mongodb/mongodb-community-server:7.0.0-ubuntu2204
+      environment:
+        - MONGO_INITDB_ROOT_USERNAME=user
+        - MONGO_INITDB_ROOT_PASSWORD=pass
+        - MONGO_INITDB_DATABASE=virk
+      volumes:
+        - ./docker-conf/mongodb/data:/data/db
+        
+    rabbitmq:
+      image: "rabbitmq:3.12.10-management-alpine"
+      ports:
+        - "5672:5672"
+        - "15672:15672"
+      volumes:
+        - ./docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+
+    connector_db:
+      image: postgres:15.1-alpine
+      ports:
+        - "5432:5432"
+      environment:
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+        - POSTGRES_DB=data
+      volumes:
+        - ./docker-conf/postgres/data/:/var/lib/postgresql/data/
